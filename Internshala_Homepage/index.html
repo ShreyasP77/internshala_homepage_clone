@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
+    crossorigin="anonymous"> -->
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+            padding: 0px 24px;
+            box-shadow: 2px 3px 7px #888888;
+
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #484848;
+            text-align: center;
+            margin: 0px 0px 2px;
+            padding: 12px 19px;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: 'Inter var';
+        }
+
+        .topnav a:hover {
+            /* background-color: #ddd; */
+            color: rgb(0, 174, 255);
+        }
+
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .topnav .icon {
+            display: none;
+
+        }
+
+        .icon_format {
+            width: 15px;
+            height: 2px;
+            background-color: #484848;
+            margin: 3px 0;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        /* .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        } */
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: #484848;
+            padding: 27px 16px;
+            background-color: inherit;
+            font-family: 'Inter var';
+            margin: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 30rem;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        /* .dropdown-content a:hover {
+            background-color: #f9f9f9;
+        } */
+        .column-v {
+            float: left;
+            width: 25%;
+            padding: 10px;
+            height: 300px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+
+
+        }
+
+        .dropdown .dropbtn:hover {
+            color: rgb(0, 174, 255);
+            ;
+        }
+
+        #logo {
+            padding-right: 35vw;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .topnav a:not(:first-child) {
+                display: none;
+            }
+
+            .topnav a:first-child {
+                position: absolute;
+                left: 50px;
+                top: 0;
+            }
+
+            .topnav a:nth-child(5) {
+                display: block;
+                position: absolute;
+                right: 5rem;
+                top: 0;
+
+            }
+
+            .topnav a:nth-child(6) {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0;
+
+            }
+
+            .dropdown {
+                display: none;
+            }
+
+            .topnav a.icon {
+                float: left;
+                display: block;
+            }
+        }
+
+        .advertise {
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        .advertise-large {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        @media screen and (max-width: 1000px) {
+
+
+            .icon {
+                padding-top: 20px;
+            }
+
+
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+
+          
+        }
+
+        @media screen and (max-width:760px) {
+            .advertise {
+                display: block;
+            }
+
+            .advertise-large {
+                display: none;
+            }
+            .column-v12 {
+                display: none;
+            }
+
+            .column-v {
+                width: 100%;
+                height: 200px;
+            }
+
+
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            height: 200px;
+            /* Should be removed. Only for demonstration */
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .column1 h5:hover {
+            background-color: aquamarine;
+        }
+
+        .column2 h5:hover {
+            background-color: rgb(255, 221, 127);
+        }
+
+     
+
+
+
+        .dropdown-content-S {
+            display: none;
+            position: absolute;
+            right: 7rem;
+            background-color: #f9f9f9;
+            min-width: 10rem;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content-S a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown:hover .dropdown-content-S {
+            display: block;
+
+        }
+
+        .badge {
+            border-radius: 4px;
+            background-color: #FF8C00;
+            color: white;
+            width: 23px;
+            font-size: small;
+            font-family: 'Inter var';
+            padding: 3px 7px;
+        }
+
+        .accordion {
+            background-color: #FFFAEB;
+
+            color: #945E12;
+            cursor: pointer;
+            padding: 18px;
+
+            border: 1px solid #FFEF85;
+            border-bottom-color: #FFFAEB;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            border-radius: 0.3rem 0.3rem 0 0;
+
+        }
+
+
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            background-color: #FFFAEB;
+            color: #945E12;
+            border: 1px solid #FFEF85;
+            border-top-color: #FFFAEB;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .container1 {
+            /* padding-top: 25px; */
+            padding: 2rem 5rem;
+
+        }
+        table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+
+  font-family:'sans-serif';
+  font-weight: 100;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+tr:nth-child(odd) {
+  background-color: #f7f7f7e7;
+}
+
+.myapps{
+  
+    display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            padding-right:0rem;
+            overflow-x: scroll;
+}
+
+
+   /* width */
+   ::-webkit-scrollbar {
+            width: 2px;
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+            background: #707070;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #505050;
+        }
+
+        .footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Inter var';
+            font-size: 16px;
+            background-color: #484848;
+            color: white;
+            text-align: center;
+            overflow-y: scroll;
+        }
+
+
+        .wrapper{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+ .card{
+    max-width: 300px;
+     min-height: 250px;
+     background: white;
+     padding: 30px;
+     box-sizing: border-box;
+     color: #484848;
+     margin:20px;
+     box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
+}
+
+ .card-title{
+     margin-top: 0;
+     font-size: 16px;
+     font-weight: 600;
+     letter-spacing: 1.2px;
+}
+ .card-content{
+     font-size: 14px;
+     letter-spacing: 0.5px;
+     line-height: 1.5;
+}
+ .card-btn{
+     all: unset;
+     display: block;
+     margin-left: auto;
+     border: 2px solid #FFF;
+     padding: 10px 15px;
+     border-radius: 25px;
+     font-size: 10px;
+     font-weight: 600;
+     transition: all 0.5s;
+     cursor: pointer;
+     letter-spacing: 1.2px;
+}
+ .card-btn:hover{
+    color:#02b875;
+    background: #FFF;
+}
+ .card:nth-child(2) .card-btn:hover{
+    color:#4181ee;
+    background: #FFF;
+}
+ .card:last-child .card-btn:hover{
+    color:#673ab7;
+     background: #FFF;
+}
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="topnav" id="myTopnav">
+            <a href="#home">
+                <img src="new_internshala_logo (1).svg" id="logo" alt="...">
+            </a>
+            <div class="dropdown">
+                <button class="dropbtn">Dropdown
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Online Trainings<span class="badge">Offer</span>
+                    <i class="  fa fa-caret-down drop"></i>
+
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+
+
+                    <div class="row">
+                        <div class="column1 column" style="background-color:#aaa;">
+                            <h5 onmouseover="program()">Programming</h5>
+                            <h5 onmouseover="business()">Business Management</h5>
+                            <h5 onmouseover="core()">Core Engineering</h5>
+                            <h5 onmouseover="datasc()">Data Science</h5>
+                            <h5 onmouseover="design()">Design</h5>
+                            <h5 onmouseover="arts()">Creative Arts</h5>
+
+
+                        </div>
+                        <div class="column2 column" style="background-color:#abbb;">
+                            <div class="program" style="display:none">
+                                <h5 class="">Programming with Python</h5>
+                                <h5 class="">Web Developement</h5>
+                                <h5 class="">Ethical Hacking</h5>
+                                <h5 class="">Core Java</h5>
+                                <h5 class="">React</h5>
+                                <h5 class="">Blockchain</h5>
+                                <h5 class="">Git & Github</h5>
+                            </div>
+                            <div class="business" style="display:none">
+                                <h5 class="">Digital Marketing</h5>
+                                <h5 class="">Advanced Excel</h5>
+                                <h5 class="">Tally</h5>
+                                <h5 class="">SQL for DataAnalytics</h5>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <a href="#about" style="padding-top: 28px;">Fresher Jobs</a>
+            <a href="#" class="chaticons" style="padding-top: 28px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-app-indicator" viewBox="0 0 16 16">
+                    <path
+                        d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1H5.5z" />
+                    <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                </svg>
+            </a>
+            <a href="#" class="chaticons" style="padding-top: 28px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+                    <path
+                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                    <path
+                        d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg></a>
+
+
+            <div class="dropdown">
+                <button class="dropbtn">S
+
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content-S" id="myDropdown-S">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="icon" id="icon">
+                <!-- <i class="fa fa-"></i> -->
+                <div style="padding-top:14px ;">
+                    <div class="icon_format"></div>
+                    <div class="icon_format"></div>
+                    <div class="icon_format"></div>
+                </div>
+            </a>
+        </div>
+
+        <!-- <div style="padding-left:16px" class="main" id="main">
+            <h5>Responsive Topnav Example</h5>
+            <p>Resize the browser window to see how it works.</p>
+        </div> -->
+
+    </div>
+
+    <div class="body">
+        <div class="container1">
+            <img src="Advertise.PNG" alt="" class="advertise-large">
+
+            <img src="Advertisemin.PNG" alt="" class="advertise">
+            <div style="padding-top: 20px;">
+                <button class="accordion">Section 1 </button>
+                <div class="panel">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; font-family: 'sans-serif'; font-size: 30px; margin:0.1em 0.83em; padding:14px; ">My applications</h2>
+
+<div class="myapps">
+    <table>
+        <tr >
+          <th>COMPANY</th>
+          <th>PROFILE</th>
+          <th>EMPLOYMENT TYPE</th>
+          <th>APPLIED ON</th>
+          <th>NUMBER OF APPLICANTS</th>
+          <th>APPLICATION STATUS</th>
+          <th>REVIEW APPLICATION</th>
+        </tr>
+        <tr>
+          <td>Bit Brothers</td>
+          <td>Front End Development</td>
+          <td>Internship</td>
+          <td>20 Sep' 21</td>
+          <td>243</td>
+          <td>In-touch <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+          </svg></span> </td>
+          <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+            <path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg></td>
+        </tr>
+        
+     
+      </table>
+    </div>
+      <p style="text-align: center; font-family: 'sans-serif'; font-size: 13px;
+       font-weight: 700; margin:0.80em 0.83em; letter-spacing: 2px;color: #484848; "
+       >
+       &#x3c; 1/1 &#x3e;
+</p>
+
+<h2 style="text-align: center; font-family: 'sans-serif'; font-size: 30px; margin:0.1em 0.83em; 
+padding:14px;
+padding-bottom: 6px; ">Recommended trainings for you</h2>
+<p style="text-align: center; font-family: 'sans-serif'; font-size: 17px;
+font-weight: 400; margin:0.80em 0.83em; letter-spacing: 1px;color: #525252; "
+>
+These recommendations are based on your profile and application history
+</p>
+
+<div class="wrapper">
+    <div class="card">
+        <img src="web-development.jpg" alt="" style="width: 15rem;">
+        <h3 class="card-title">
+            WEB DEVELOPMENT
+        </h3>
+            <p class="card-content">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <button class="card-btn">READ MORE</button>
+        </div>
+        <div class="card">
+            <img src="react.jpg" alt="" style="width: 15rem;">
+            <h3 class="card-title">REACT</h3>
+            <p class="card-content">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <button class="card-btn">READ MORE</button>
+        </div>
+        <div class="card">
+            <img src="android.jpg" alt="" style="width: 15rem;">
+            <h3 class="card-title">ANDROID APP DEVELOPEMENT</h3>
+            <p class="card-content">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+            <button class="card-btn">READ MORE</button>
+        </div>
+    </div>
+
+    </div>
+
+
+    <div id="mySidenav" class="sidenav">
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+
+
+    <div class="footer">
+        <div class="row">
+            <div class="column-v column-v12" style="background-color:#484848">
+                <h4>Internships by places</h4>
+                <p>Internship in India</p>
+            </div>
+            <div class="column-v column-v12" style="background-color:#484848;">
+                <h4>Internship by Stream</h4>
+                <p>Computer Science Internship</p>
+            </div>
+            <div class="column-v" style="background-color:#484848;">
+                <h4>Online Trainings</h4>
+                <p>Programming with Python</p>
+            </div>
+            <div class="column-v" style="background-color:#484848;">
+                <h4>About Internshala</h4>
+                <p>About us</p>
+            </div>
+        </div>
+
+        <hr style="width: 98%;">
+        <div style="height: 10px;"></div>
+        <div style='float: left;padding-left: 1rem;'><span style="padding:18px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-instagram" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                </svg>
+            </span>
+            <span style="padding:18px;">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                </svg>
+            </span>
+            <span style="padding:18px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                </svg>
+            </span>
+            <span style="padding:18px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-linkedin" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                </svg>
+            </span>
+        </div>
+        <div style='float: right;padding-right: 1rem; '>
+
+            &copy;Copyright 2021 Internshala
+
+        </div>
+
+
+    </div>
+
+    <script>
+
+
+
+        y = document.getElementsByClassName("main")[0]
+        window.onclick = function (event) {
+            var box = document.getElementById('mySidenav');
+            var icon = document.getElementById('icon')
+
+            if (event.target == icon) {
+                box.style.width = '250px';
+            }
+            else {
+                if (event.target != box) {
+                    box.style.width = '0px';
+                }
+            }
+        }
+
+        program1 = document.getElementsByClassName('program')[0]
+        business1 = document.getElementsByClassName('business')[0]
+        function program() {
+
+            program1.style.display = 'block';
+            business1.style.display = 'none';
+        }
+        function business() {
+
+            program1.style.display = 'none';
+            business1.style.display = 'block';
+
+        }
+
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
